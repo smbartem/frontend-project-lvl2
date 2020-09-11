@@ -1,0 +1,26 @@
+{
+  "name": "frontend-project-lvl2",
+  "version": "1.0.1",
+  "description": "Compares two configuration files and shows a difference.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smbartem/frontend-project-lvl2.git"
+  },
+  "author": "smbartem",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/smbartem/frontend-project-lvl2/issues"
+  },
+  "homepage": "https://github.com/smbartem/frontend-project-lvl2#readme",
+  "dependencies": {
+    "commander": "^6.1.0"
+  },
+  "bin": {
+    "gendiff": "bin/gendiff.js"
+  }
+}
