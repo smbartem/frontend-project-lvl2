@@ -18,9 +18,10 @@
   },
   "homepage": "https://github.com/smbartem/frontend-project-lvl2#readme",
   "dependencies": {
-    "commander": "^6.1.0"
+    "commander": "^6.1.0",
+    "lodash": "^4.17.20"
   },
   "bin": {
-    "gendiff": "bin/gendiff.js"
+    "gendiff": "src/bin/gendiff.js"
   }
 }
