@@ -1,3 +1,6 @@
+[![example workflow name](https://github.com/smbartem/frontend-project-lvl2/workflows/Node%20CI/badge.svg)](https://github.com/smbartem/frontend-project-lvl2/actions) [![Maintainability](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability)](https://codeclimate.com/github/smbartem/frontend-project-lvl2)
+
+
 __Проект: Вычислитель отличий__ 
 ===========
     Выполнено в рамках учебного проекта на Hexlet.
