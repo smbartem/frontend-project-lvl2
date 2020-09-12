@@ -23,7 +23,7 @@ const genDiff = (file1, file2) => {
       resultOfGenDiff += `    ${key}: ${parseBeforeFile[key]}\n`;
     }
   });
-  return `{ \n${resultOfGenDiff}}`;
+  return `{\n${resultOfGenDiff}}`;
 };
 
 export default genDiff;
