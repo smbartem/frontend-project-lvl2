@@ -13,3 +13,6 @@ __Установка:__
   
 __Сравнение JSON-файлов:__
 [![asciicast](https://asciinema.org/a/BjR2iOEpU9ZNSydZaxma55Oqt.svg)](https://asciinema.org/a/BjR2iOEpU9ZNSydZaxma55Oqt)
+
+__Сравнение YAML-файлов:__
+[![asciicast](https://asciinema.org/a/h6tG4PaSUirtIUqIPD21kKCNa.svg)](https://asciinema.org/a/h6tG4PaSUirtIUqIPD21kKCNa)
