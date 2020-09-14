@@ -11,5 +11,6 @@ const rightAnswer =
 }`;
 
 test('genDiff', () => {
-  expect(gendiff('__fixtures__/file1.json', '__fixtures__/file2.json')).toBe(rightAnswer);
+  expect(gendiff('__tests__/__fixtures__/file1.json', '__tests__/__fixtures__/file2.json')).toBe(rightAnswer);
+  expect(gendiff('__tests__/__fixtures__/file1.yml', '__tests__/__fixtures__/file2.yml')).toBe(rightAnswer);
 });
