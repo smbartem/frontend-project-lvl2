@@ -16,3 +16,6 @@ __Сравнение JSON-файлов:__
 
 __Сравнение YAML-файлов:__
 [![asciicast](https://asciinema.org/a/h6tG4PaSUirtIUqIPD21kKCNa.svg)](https://asciinema.org/a/h6tG4PaSUirtIUqIPD21kKCNa)
+
+__Сравнение INI-файлов:__
+[![asciicast](https://asciinema.org/a/l6RHQMLxkA0BeHPca1CyAg2GL.svg)](https://asciinema.org/a/l6RHQMLxkA0BeHPca1CyAg2GL)
