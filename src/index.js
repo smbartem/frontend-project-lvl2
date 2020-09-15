@@ -1,26 +1,33 @@
 import _ from 'lodash';
 import startParser from './parsers.js';
+import format from './formaters/stylish.js';
+
+const makeDiffTree = (object1, object2) => {
+  const keys = _.union(_.keys(object1), _.keys(object2)).sort();
+  return keys.map((key) => {
+    if (!_.has(object1, key)) {
+      return { key, value: object2[key], status: 'added' };
+    }
+    if (!_.has(object2, key)) {
+      return { key, value: object1[key], status: 'deleted' };
+    }
+    if (object1[key] === object2[key]) {
+      return { key, value: object1[key], status: 'unmodified' };
+    }
+    if (!_.isObject(object1[key]) || !_.isObject(object2[key])) {
+      return {
+        key, previousValue: object1[key], presentValue: object2[key], status: 'modified',
+      };
+    }
+    return { key, treeChild: makeDiffTree(object1[key], object2[key]), status: 'hasInnerTree' };
+  });
+};
 
 const genDiff = (file1, file2) => {
   const parsingBeforeFile = startParser(file1);
   const parsingAfterFile = startParser(file2);
-  const keys1 = _.keys(parsingBeforeFile);
-  const keys2 = _.keys(parsingAfterFile);
-  const keys = _.union(keys1, keys2).sort();
-  let resultOfGenDiff = '';
-  keys.forEach((key) => {
-    if (!_.has(parsingAfterFile, key)) {
-      resultOfGenDiff += `  - ${key}: ${parsingBeforeFile[key]}\n`;
-    } else if (!_.has(parsingBeforeFile, key)) {
-      resultOfGenDiff += `  + ${key}: ${parsingAfterFile[key]}\n`;
-    } else if (parsingBeforeFile[key] !== parsingAfterFile[key]) {
-      resultOfGenDiff += `  - ${key}: ${parsingBeforeFile[key]}\n`;
-      resultOfGenDiff += `  + ${key}: ${parsingAfterFile[key]}\n`;
-    } else {
-      resultOfGenDiff += `    ${key}: ${parsingBeforeFile[key]}\n`;
-    }
-  });
-  return `{\n${resultOfGenDiff}}`;
+  const diffTree = makeDiffTree(parsingBeforeFile, parsingAfterFile);
+  return format(diffTree);
 };
 
 export default genDiff;
