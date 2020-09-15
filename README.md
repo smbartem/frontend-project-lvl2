@@ -11,11 +11,14 @@ __Установка:__
   2. Клонируйте проект
   3. В папке проекта выполните команду: npm link;
   
-__Сравнение JSON-файлов:__
+__Сравнение простых и рекурсивных JSON-файлов:__
 [![asciicast](https://asciinema.org/a/BjR2iOEpU9ZNSydZaxma55Oqt.svg)](https://asciinema.org/a/BjR2iOEpU9ZNSydZaxma55Oqt)
+[![asciicast](https://asciinema.org/a/QONsuVcpTpAl4PASxS9Gjmfj2.svg)](https://asciinema.org/a/QONsuVcpTpAl4PASxS9Gjmfj2)
 
-__Сравнение YAML-файлов:__
+__Сравнение простых и рекурсивных YAML-файлов:__
 [![asciicast](https://asciinema.org/a/h6tG4PaSUirtIUqIPD21kKCNa.svg)](https://asciinema.org/a/h6tG4PaSUirtIUqIPD21kKCNa)
+[![asciicast](https://asciinema.org/a/PyYAq4R7e8k1EOQ92Egyy8lvu.svg)](https://asciinema.org/a/PyYAq4R7e8k1EOQ92Egyy8lvu)
 
-__Сравнение INI-файлов:__
+__Сравнение простых и рекурсивных INI-файлов:__
 [![asciicast](https://asciinema.org/a/l6RHQMLxkA0BeHPca1CyAg2GL.svg)](https://asciinema.org/a/l6RHQMLxkA0BeHPca1CyAg2GL)
+[![asciicast](https://asciinema.org/a/KA2kul8lS54u0D1AGfckY1eO4.svg)](https://asciinema.org/a/KA2kul8lS54u0D1AGfckY1eO4)
