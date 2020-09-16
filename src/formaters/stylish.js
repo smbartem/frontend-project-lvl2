@@ -23,7 +23,7 @@ const formatValue = (value, space) => {
   return result;
 };
 
-const format = (diffTree) => {
+const stylish = (diffTree) => {
   const iter = (node, depth) => {
     const space = depth * gap;
     const treeOfString = node.flatMap((child) => {
@@ -47,4 +47,4 @@ const format = (diffTree) => {
   return iter(diffTree, 1);
 };
 
-export default format;
+export default stylish;
