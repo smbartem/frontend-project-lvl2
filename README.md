@@ -4,21 +4,24 @@
 __Проект: Вычислитель отличий__ 
 ===========
     Выполнено в рамках учебного проекта на Hexlet.
-    Вычислитель отличий – программа, определяющая разницу между двумя структурами данных. 
+    Вычислитель отличий – программа, определяющая разницу между двумя структурами данных форматов JSON, YAML, INI. 
 
 __Установка:__
   1. Убедитесь, что у вас установлен Node.js не ниже версии 12: node -v;
   2. Клонируйте проект
   3. В папке проекта выполните команду: npm link;
   
-__Сравнение простых и рекурсивных JSON-файлов:__
-[![asciicast](https://asciinema.org/a/BjR2iOEpU9ZNSydZaxma55Oqt.svg)](https://asciinema.org/a/BjR2iOEpU9ZNSydZaxma55Oqt)
+__Сравнение простых и рекурсивных JSON-файлов c выводом в формате дерева:__
 [![asciicast](https://asciinema.org/a/QONsuVcpTpAl4PASxS9Gjmfj2.svg)](https://asciinema.org/a/QONsuVcpTpAl4PASxS9Gjmfj2)
 
-__Сравнение простых и рекурсивных YAML-файлов:__
-[![asciicast](https://asciinema.org/a/h6tG4PaSUirtIUqIPD21kKCNa.svg)](https://asciinema.org/a/h6tG4PaSUirtIUqIPD21kKCNa)
+__Сравнение простых и рекурсивных YAML-файлов c выводом в формате дерева:__
 [![asciicast](https://asciinema.org/a/PyYAq4R7e8k1EOQ92Egyy8lvu.svg)](https://asciinema.org/a/PyYAq4R7e8k1EOQ92Egyy8lvu)
 
-__Сравнение простых и рекурсивных INI-файлов:__
-[![asciicast](https://asciinema.org/a/l6RHQMLxkA0BeHPca1CyAg2GL.svg)](https://asciinema.org/a/l6RHQMLxkA0BeHPca1CyAg2GL)
+__Сравнение простых и рекурсивных INI-файлов c выводом в формате дерева:__
 [![asciicast](https://asciinema.org/a/KA2kul8lS54u0D1AGfckY1eO4.svg)](https://asciinema.org/a/KA2kul8lS54u0D1AGfckY1eO4)
+
+__Сравнение простых и рекурсивных файлов, описанных выше форматов, c выводом в простом текстовом формате:__
+[![asciicast](https://asciinema.org/a/SGUffO27hF4RCzdFOAXCeNHtX.svg)](https://asciinema.org/a/SGUffO27hF4RCzdFOAXCeNHtX)
+
+__Сравнение простых и рекурсивных файлов, описанных выше форматов, c выводом в JSON-формате:__
+[![asciicast](https://asciinema.org/a/iLhTfnHv8DZNlC3M5CRZWGiVB.svg)](https://asciinema.org/a/iLhTfnHv8DZNlC3M5CRZWGiVB)
