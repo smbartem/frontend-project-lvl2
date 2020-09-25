@@ -1,8 +1,11 @@
 install: 
-	npm install
+	install-deps
+
+install-deps:
+	npm ci
 
 gendiff: 
-	node --experimental-json-modules src/bin/gendiff.js
+	node --experimental-json-modules bin/gendiff.js
 
 lint:
 	npx eslint .

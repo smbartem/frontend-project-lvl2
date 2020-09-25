@@ -1,8 +1,7 @@
 #!/usr/bin/env node --experimental-json-modules
-
 import program from 'commander';
-import pack from '../../package.json';
-import genDiff from '../index.js';
+import pack from '../package.json';
+import genDiff from '../src/index.js';
 
 program
   .version(pack.version, '-v, --version')
