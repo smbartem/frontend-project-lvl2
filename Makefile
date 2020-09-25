@@ -1,5 +1,5 @@
 install: 
-	install-deps
+	npm install
 
 install-deps:
 	npm ci
@@ -14,7 +14,7 @@ publish:
 	npm publish --dry-run
 
 test:
-	npm test
+	npx -n --experimental-vm-modules jest
 
 test-coverage:
-	npm test -- --coverage
+	npm test -- --coverage --coverageProvider=v8
