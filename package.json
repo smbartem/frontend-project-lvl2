@@ -5,10 +5,6 @@
   "bin": {
     "gendiff": "bin/gendiff.js"
   },
-  "jest": {
-    "testEnvironment": "node",
-    "transform": {}
-  },
   "engines": {
     "node": ">=14"
   },

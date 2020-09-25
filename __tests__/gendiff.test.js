@@ -18,7 +18,7 @@ test.each([
 ])('Testing gendiff', (formatOfFile, formatOfResult) => {
   const pathToFile1 = `__tests__/__fixtures__/treeFile1.${formatOfFile}`;
   const pathToFile2 = `__tests__/__fixtures__/treeFile2.${formatOfFile}`;
-  const results = ['__tests__/__fixtures__/jsonFormateResult.json', '__tests__/__fixtures__/plainFormateResult.txt', '__tests__/__fixtures__/stylishFormateResult.txt'];
+  const results = ['__tests__/__fixtures__/jsonFormateResult', '__tests__/__fixtures__/plainFormateResult', '__tests__/__fixtures__/stylishFormateResult'];
   const nameOfResultFile = results.filter((result) => result.includes(`${formatOfResult}`)).join();
   const expected = readFile(nameOfResultFile);
   expect(genDiff(pathToFile1, pathToFile2, formatOfResult)).toEqual(expected);
