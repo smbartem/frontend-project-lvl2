@@ -1,11 +1,12 @@
-#!/usr/bin/env node --experimental-json-modules
+// без шебанга не работает передача аргументов скрипту gendiff при вызове из командной строки
+// (например, gendiff -v не получает аргумент -v, но скрипт исполняется),
+// а если написать node bin/gendiff.js -v все работает
 import program from 'commander';
-import pack from '../package.json';
 import genDiff from '../src/index.js';
 
 program
-  .version(pack.version, '-v, --version')
-  .description(pack.description)
+  .version('1.0.1', '-v, --version')
+  .description('Compares two configuration files and shows a difference.')
   .helpOption('-h, --help', 'read more information')
   .option('-f, --format [type]', 'output format')
   .arguments('<filepath1> <filepath2>')

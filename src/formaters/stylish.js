@@ -36,7 +36,7 @@ const stylish = (diffTree) => {
           return `${getSpace(space)}  ${child.key}: ${formatValue(child.value, space)}`;
         case 'modified':
           return [`${getSpace(space)}- ${child.key}: ${formatValue(child.previousValue, space)}`, `${getSpace(space)}+ ${child.key}: ${formatValue(child.presentValue, space)}`];
-        case 'hasInnerTree':
+        case 'nested':
           return `${getSpace(space)}  ${child.key}: ${iter(child.treeChild, depth + gap)}`;
         default:
           throw new Error('Error! Type is invalid');

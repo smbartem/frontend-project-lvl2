@@ -1,18 +1,17 @@
-import _ from 'lodash';
 import stylish from './stylish.js';
 import plain from './plain.js';
 import json from './json.js';
 
-const renderOption = {
-  stylish,
-  plain,
-  json,
-};
-
 const render = (data, outputFormat) => {
-  if (_.has(renderOption, outputFormat)) {
-    return renderOption[outputFormat](data);
+  switch (outputFormat) {
+    case 'stylish':
+      return stylish(data);
+    case 'plain':
+      return plain(data);
+    case 'json':
+      return json(data);
+    default:
+      throw new Error(`Unknown result format style: '${outputFormat}'!`);
   }
-  return renderOption.stylish(data);
 };
 export default render;
