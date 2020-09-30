@@ -2,7 +2,7 @@ install:
 	npm install
 
 gendiff: 
-	node bin/gendiff.js
+	node --experimental-json-modules bin/gendiff.js
 
 lint:
 	npx eslint .

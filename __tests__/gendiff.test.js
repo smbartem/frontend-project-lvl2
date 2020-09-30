@@ -9,12 +9,12 @@ const fileExtensionsList = ['.json', '.yml', '.ini'];
 const resultFormatStyleList = ['stylish', 'plain', 'json'];
 
 resultFormatStyleList.forEach((format) => {
-  const ResultFile = readFile(`__tests__/__fixtures__/${format}FormateResult`);
+  const referenceFileContent = readFile(`__tests__/__fixtures__/${format}FormateResult`);
   fileExtensionsList.forEach((extension) => {
     const pathToFile1 = `__tests__/__fixtures__/treeFile1${extension}`;
     const pathToFile2 = `__tests__/__fixtures__/treeFile2${extension}`;
     test(`Test '${extension}' files with '${format}' presentation format`, () => {
-      expect(genDiff(pathToFile1, pathToFile2, format)).toEqual(ResultFile);
+      expect(genDiff(pathToFile1, pathToFile2, format)).toEqual(referenceFileContent);
     });
   });
 });

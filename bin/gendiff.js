@@ -1,12 +1,10 @@
-// без шебанга не работает передача аргументов скрипту gendiff при вызове из командной строки
-// (например, gendiff -v не получает аргумент -v, но скрипт исполняется),
-// а если написать node bin/gendiff.js -v все работает
 import program from 'commander';
 import genDiff from '../src/index.js';
+import packageJson from '../package.json';
 
 program
-  .version('1.0.1', '-v, --version')
-  .description('Compares two configuration files and shows a difference.')
+  .version(packageJson.version, '-v, --version')
+  .description(packageJson.description)
   .helpOption('-h, --help', 'read more information')
   .option('-f, --format [type]', 'output format')
   .arguments('<filepath1> <filepath2>')

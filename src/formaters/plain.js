@@ -17,7 +17,7 @@ const makePlainView = (tree) => {
         case 'modified':
           return `Property '${keyPath}' was updated. From ${changeObjectValue(child.previousValue)} to ${changeObjectValue(child.presentValue)}`;
         case 'unmodified':
-          return null;
+          return [];
         case 'nested':
           return iter(child.treeChild, `${keyPath}.`);
         default:

@@ -5,13 +5,13 @@ const getSpace = (depth) => {
 
 const nestedValueToString = (object, depth1) => {
   const iter = (node, depth2) => {
-    const innerValue = Object.entries(node).flatMap(([key, val]) => {
+    const innerValueCollection = Object.entries(node).flatMap(([key, val]) => {
       if (typeof val !== 'object') {
         return `${getSpace(depth2 + 1)}${key}: ${val}`;
       }
       return `${getSpace(depth2 + 1)}${key}: ${iter(val, depth2 + 1)}`;
     });
-    return `{\n${innerValue.join('\n')}\n${getSpace(depth2)}}`;
+    return `{\n${innerValueCollection.join('\n')}\n${getSpace(depth2)}}`;
   };
   return iter(object, depth1);
 };
@@ -25,7 +25,7 @@ const formatValue = (value, depth) => {
 
 const stylish = (diffTree) => {
   const iter = (node, depth) => {
-    const stylishValue = node.flatMap((child) => {
+    const stylishValueCollection = node.flatMap((child) => {
       switch (child.status) {
         case 'deleted':
           return `${getSpace(depth)}  - ${child.key}: ${formatValue(child.value, depth)}`;
@@ -41,10 +41,10 @@ const stylish = (diffTree) => {
         case 'nested':
           return `${getSpace(depth)}    ${child.key}: ${iter(child.treeChild, depth + 1)}`;
         default:
-          throw new Error('Error! Type is invalid');
+          throw new Error(`Unknown type of status: '${child.status}'!`);
       }
     });
-    return `{\n${stylishValue.join('\n')}\n${getSpace(depth)}}`;
+    return `{\n${stylishValueCollection.join('\n')}\n${getSpace(depth)}}`;
   };
   return iter(diffTree, 0);
 };
