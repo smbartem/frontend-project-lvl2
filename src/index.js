@@ -6,8 +6,8 @@ import render from './formaters/index.js';
 
 const parseFile = (pathToFile) => {
   const extension = path.extname(pathToFile).toLowerCase();
-  const fileСontent = fs.readFileSync(path.resolve(process.cwd(), pathToFile), 'utf8');
-  return parse(extension, fileСontent);
+  const content = fs.readFileSync(path.resolve(process.cwd(), pathToFile), 'utf8');
+  return parse(extension, content);
 };
 
 const makeDiffTree = (object1, object2) => {
@@ -19,13 +19,13 @@ const makeDiffTree = (object1, object2) => {
     if (!_.has(object2, key)) {
       return { key, value: object1[key], status: 'deleted' };
     }
-    if ((!_.isObject(object1[key]) || !_.isObject(object2[key])) && object1[key] !== object2[key]) {
-      return {
-        key, previousValue: object1[key], presentValue: object2[key], status: 'modified',
-      };
-    }
     if (_.isObject(object1[key]) && _.isObject(object2[key])) {
-      return { key, treeChild: makeDiffTree(object1[key], object2[key]), status: 'nested' };
+      return { key, children: makeDiffTree(object1[key], object2[key]), status: 'nested' };
+    }
+    if (object1[key] !== object2[key]) {
+      return {
+        key, firstObjectValue: object1[key], secondObjectValue: object2[key], status: 'modified',
+      };
     }
     return { key, value: object1[key], status: 'unmodified' };
   });

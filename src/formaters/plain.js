@@ -15,16 +15,16 @@ const makePlainView = (tree) => {
         case 'deleted':
           return `Property '${keyPath}' was removed`;
         case 'modified':
-          return `Property '${keyPath}' was updated. From ${changeObjectValue(child.previousValue)} to ${changeObjectValue(child.presentValue)}`;
+          return `Property '${keyPath}' was updated. From ${changeObjectValue(child.firstObjectValue)} to ${changeObjectValue(child.secondObjectValue)}`;
         case 'unmodified':
           return [];
         case 'nested':
-          return iter(child.treeChild, `${keyPath}.`);
+          return iter(child.children, `${keyPath}.`);
         default:
           throw new Error(`Unknown type of status: '${child.status}'!`);
       }
     });
-    return result.filter((item) => item !== null);
+    return result;
   };
   return iter(tree, '');
 };

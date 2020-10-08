@@ -3,48 +3,41 @@ const getSpace = (depth) => {
   return space.repeat(depth);
 };
 
-const nestedValueToString = (object, depth1) => {
-  const iter = (node, depth2) => {
-    const innerValueCollection = Object.entries(node).flatMap(([key, val]) => {
-      if (typeof val !== 'object') {
-        return `${getSpace(depth2 + 1)}${key}: ${val}`;
-      }
-      return `${getSpace(depth2 + 1)}${key}: ${iter(val, depth2 + 1)}`;
-    });
-    return `{\n${innerValueCollection.join('\n')}\n${getSpace(depth2)}}`;
-  };
-  return iter(object, depth1);
-};
-
-const formatValue = (value, depth) => {
-  if (typeof value === 'object') {
-    return nestedValueToString(value, depth + 1);
+const stringify = (value, depth) => {
+  if (typeof value !== 'object') {
+    return value;
   }
-  return value;
+  const innerValues = Object.entries(value).flatMap(([key, val]) => {
+    if (typeof val !== 'object') {
+      return `${getSpace(depth + 2)}${key}: ${val}`;
+    }
+    return `${getSpace(depth + 2)}${key}: ${stringify(val, depth + 1)}`;
+  });
+  return `{\n${innerValues.join('\n')}\n${getSpace(depth + 1)}}`;
 };
 
 const stylish = (diffTree) => {
   const iter = (node, depth) => {
-    const stylishValueCollection = node.flatMap((child) => {
+    const stylishValues = node.flatMap((child) => {
       switch (child.status) {
         case 'deleted':
-          return `${getSpace(depth)}  - ${child.key}: ${formatValue(child.value, depth)}`;
+          return `${getSpace(depth)}  - ${child.key}: ${stringify(child.value, depth)}`;
         case 'added':
-          return `${getSpace(depth)}  + ${child.key}: ${formatValue(child.value, depth)}`;
+          return `${getSpace(depth)}  + ${child.key}: ${stringify(child.value, depth)}`;
         case 'unmodified':
-          return `${getSpace(depth)}    ${child.key}: ${formatValue(child.value, depth)}`;
+          return `${getSpace(depth)}    ${child.key}: ${stringify(child.value, depth)}`;
         case 'modified':
           return [
-            `${getSpace(depth)}  - ${child.key}: ${formatValue(child.previousValue, depth)}`,
-            `${getSpace(depth)}  + ${child.key}: ${formatValue(child.presentValue, depth)}`,
+            `${getSpace(depth)}  - ${child.key}: ${stringify(child.firstObjectValue, depth)}`,
+            `${getSpace(depth)}  + ${child.key}: ${stringify(child.secondObjectValue, depth)}`,
           ];
         case 'nested':
-          return `${getSpace(depth)}    ${child.key}: ${iter(child.treeChild, depth + 1)}`;
+          return `${getSpace(depth)}    ${child.key}: ${iter(child.children, depth + 1)}`;
         default:
           throw new Error(`Unknown type of status: '${child.status}'!`);
       }
     });
-    return `{\n${stylishValueCollection.join('\n')}\n${getSpace(depth)}}`;
+    return `{\n${stylishValues.join('\n')}\n${getSpace(depth)}}`;
   };
   return iter(diffTree, 0);
 };
