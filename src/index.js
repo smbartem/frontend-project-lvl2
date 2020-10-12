@@ -7,7 +7,7 @@ import render from './formaters/index.js';
 const parseFile = (pathToFile) => {
   const extension = path.extname(pathToFile).toLowerCase();
   const content = fs.readFileSync(path.resolve(process.cwd(), pathToFile), 'utf8');
-  return parse(extension, content);
+  return parse(content, extension);
 };
 
 const makeDiffTree = (object1, object2) => {
@@ -32,9 +32,9 @@ const makeDiffTree = (object1, object2) => {
 };
 
 const genDiff = (pathToFile1, pathToFile2, outputFormat = 'stylish') => {
-  const parsingBeforeFile = parseFile(pathToFile1);
-  const parsingAfterFile = parseFile(pathToFile2);
-  const diffTree = makeDiffTree(parsingBeforeFile, parsingAfterFile);
+  const data1 = parseFile(pathToFile1);
+  const data2 = parseFile(pathToFile2);
+  const diffTree = makeDiffTree(data1, data2);
   return render(diffTree, outputFormat);
 };
 

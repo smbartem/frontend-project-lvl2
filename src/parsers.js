@@ -7,6 +7,6 @@ const parsers = {
   '.json': JSON.parse,
 };
 
-const parse = (extension, content) => parsers[extension](content);
+const parse = (content, extension) => parsers[extension](content);
 
 export default parse;
