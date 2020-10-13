@@ -11,10 +11,10 @@ const fileExtensionsList = ['.json', '.yml', '.ini'];
 const resultFormatStyleList = ['stylish', 'plain', 'json'];
 
 resultFormatStyleList.forEach((format) => {
-  const referenceFileContent = readFile(`${getFixturePath('result')}_${format}`);
+  const referenceFileContent = readFile(getFixturePath(`result_${format}`));
   fileExtensionsList.forEach((extension) => {
-    const pathToFile1 = `${getFixturePath('file1')}${extension}`;
-    const pathToFile2 = `${getFixturePath('file2')}${extension}`;
+    const pathToFile1 = getFixturePath(`file1${extension}`);
+    const pathToFile2 = getFixturePath(`file2${extension}`);
     test(`Test '${extension}' files with '${format}' presentation format`, () => {
       expect(genDiff(pathToFile1, pathToFile2, format)).toEqual(referenceFileContent);
     });
