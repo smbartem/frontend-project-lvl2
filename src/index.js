@@ -5,9 +5,9 @@ import parse from './parsers.js';
 import render from './formaters/index.js';
 
 const parseFile = (pathToFile) => {
-  const extension = path.extname(pathToFile).toLowerCase();
+  const format = path.extname(pathToFile).toLowerCase().slice(1);
   const content = fs.readFileSync(path.resolve(process.cwd(), pathToFile), 'utf8');
-  return parse(content, extension);
+  return parse(content, format);
 };
 
 const makeDiffTree = (object1, object2) => {
@@ -19,7 +19,7 @@ const makeDiffTree = (object1, object2) => {
     if (!_.has(object2, key)) {
       return { key, value: object1[key], status: 'deleted' };
     }
-    if (_.isObject(object1[key]) && _.isObject(object2[key])) {
+    if (_.isPlainObject(object1[key]) && _.isPlainObject(object2[key])) {
       return { key, children: makeDiffTree(object1[key], object2[key]), status: 'nested' };
     }
     if (object1[key] !== object2[key]) {

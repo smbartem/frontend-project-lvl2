@@ -4,16 +4,11 @@ const getSpace = (depth) => {
 };
 
 const stringify = (value, depth) => {
-  if (typeof value !== 'object') {
+  if (typeof value !== 'object' || value === null) {
     return value;
   }
-  const innerValues = Object.entries(value).flatMap(([key, val]) => {
-    if (typeof val !== 'object') {
-      return `${getSpace(depth + 2)}${key}: ${val}`;
-    }
-    return `${getSpace(depth + 2)}${key}: ${stringify(val, depth + 1)}`;
-  });
-  return `{\n${innerValues.join('\n')}\n${getSpace(depth + 1)}}`;
+  const innerValues = Object.entries(value).flatMap(([key, val]) => `${getSpace(depth)}    ${key}: ${stringify(val, depth + 1)}`);
+  return `{\n${innerValues.join('\n')}\n${getSpace(depth)}}`;
 };
 
 const stylish = (diffTree) => {
@@ -21,15 +16,15 @@ const stylish = (diffTree) => {
     const stylishValues = node.flatMap((child) => {
       switch (child.status) {
         case 'deleted':
-          return `${getSpace(depth)}  - ${child.key}: ${stringify(child.value, depth)}`;
+          return `${getSpace(depth)}  - ${child.key}: ${stringify(child.value, depth + 1)}`;
         case 'added':
-          return `${getSpace(depth)}  + ${child.key}: ${stringify(child.value, depth)}`;
+          return `${getSpace(depth)}  + ${child.key}: ${stringify(child.value, depth + 1)}`;
         case 'unmodified':
-          return `${getSpace(depth)}    ${child.key}: ${stringify(child.value, depth)}`;
+          return `${getSpace(depth)}    ${child.key}: ${stringify(child.value, depth + 1)}`;
         case 'modified':
           return [
-            `${getSpace(depth)}  - ${child.key}: ${stringify(child.firstObjectValue, depth)}`,
-            `${getSpace(depth)}  + ${child.key}: ${stringify(child.secondObjectValue, depth)}`,
+            `${getSpace(depth)}  - ${child.key}: ${stringify(child.firstObjectValue, depth + 1)}`,
+            `${getSpace(depth)}  + ${child.key}: ${stringify(child.secondObjectValue, depth + 1)}`,
           ];
         case 'nested':
           return `${getSpace(depth)}    ${child.key}: ${iter(child.children, depth + 1)}`;
